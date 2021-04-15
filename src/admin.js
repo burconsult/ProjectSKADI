@@ -52,7 +52,7 @@ document
   .addEventListener("click", deleteProduct);
 
 // Delete productfrom DB
-function deleteProduct(e) {
+function deleteProductWrong(e) {
   if (e.target.classList.contains("delete")) {
     const id = e.target.id;
     e.target.parentElement.parentElement.remove(id);
@@ -64,6 +64,22 @@ function deleteProduct(e) {
       .then((data) => console.log("blabla"))
       .catch("Error on delete!");
   }
+}
+
+// Delete productfrom DB
+function deleteProduct(e) {
+    if (e.target.classList.contains("delete")) {
+        const id = e.target.id;
+        e.target.parentElement.parentElement.remove(id);
+        // const productToDelete = `https://6060b8b904b05d0017ba2dfb.mockapi.io/products?id=${id}`;
+    
+        http
+          // .delete(`http://localhost:3000/products/${id}`)
+          fetch(`https://6060b8b904b05d0017ba2dfb.mockapi.io/products` + '/' + id, {
+            method: 'DELETE'})
+            .then(response => response.json())
+            .then(data => {console.log(data)})
+}
 }
 
 // async delete('https://6060b8b904b05d0017ba2dfb.mockapi.io/products') {
